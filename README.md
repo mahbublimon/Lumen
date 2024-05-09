@@ -42,21 +42,24 @@ Lumen is a robotic companion designed to assist blind students in their daily ac
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/mechamaru.git
+   git clone https://github.com/mahbublimon/lumen.git
+   ```
+
 2. Install the required dependencies:
 
    ```bash
    pip install -r requirements.txt
+   ```
 
 3. Run the main script:
 
-  ```bash
-  python lumen.py
-
+   ```bash
+   python lumen.py
+   ```
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to Mechamaru, you can follow these steps:
+Contributions are welcome! If you'd like to contribute to Lumen, you can follow these steps:
 
 1. Fork the repository on GitHub.
 2. Create a new branch from the `main` branch for your changes.
@@ -73,7 +76,7 @@ Contributions are welcome! If you'd like to contribute to Mechamaru, you can fol
 
 ### Code of Conduct
 
-Please note that Mechamaru has a [Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
+Please note that Lumen has a [Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
 
 ## License
 
