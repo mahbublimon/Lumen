@@ -1,41 +1,23 @@
-# Lumen: Robot Companion for Blind Students
+# Lumen: Assistive Robot for Blind Students
 
-Lumen is a robotic companion designed to assist blind students in their daily activities and promote independence. It incorporates various features to provide support and enhance the user's quality of life.
+Lumen is a robotic companion designed to assist blind students by enhancing their independence through advanced features such as text-to-speech, gesture recognition, GPS navigation, and voice interaction.
 
 ## Features
 
-1. **Text to Speech from Book**: Mechamaru can read books or any text aloud for the user.
-2. **Gesture Recognition**: Detects gestures made by the user and responds accordingly.
-3. **Health Monitoring**: Monitors health metrics such as walking steps and heartbeat.
-4. **GPS Navigation**: Assists the user in navigating from one location to another.
-5. **Voice Recognition**: Recognizes the user's voice commands and responds accordingly.
-6. **Photo Capture**: Takes photos to describe surroundings or capture memorable moments.
-7. **User Recognition and Camera Movement**: Identifies the user and adjusts its camera accordingly.
-8. **Educational Support**: Helps with homework assignments and prepares the user for tasks.
-9. **Fall Detection**: Utilizes sensors to prevent the user from falling or encountering obstacles.
-10. **Emotion Display**: Shows different reactions such as happy, angry, or sad.
-11. **Question-Answering**: Provides accurate information in response to user queries.
-12. **Music Playback**: Plays music and communicates with the user using high-quality sound output.
-13. **Learning and Adaptation**: Adapts and learns from interactions to better serve the user over time.
-14. **Voice Assistant & IoT Control**: Acts as a voice-controlled assistant and controls IoT devices.
-15. **Long-Distance Interaction**: Enables interaction with the user even from a distance.
-16. **Safety Alerts**: Sends messages to parents when the user reaches a place or encounters trouble.
+1. **Text to Speech from Book**: Converts printed text into speech to assist with reading.
+2. **Gesture Recognition**: Detects gestures and responds with sound-based feedback.
+3. **GPS Navigation**: Assists users in moving from one place to another.
+4. **Voice Recognition**: Responds to voice commands for interaction and control.
+5. **Photo Capture**: Captures images to describe surroundings or assist with learning.
 
 ## Hardware Components Used
 
-- Raspberry Pi 4B
-- Neo 6M GPS Module
-- SIM 800L
-- DF Player Mini
-- Max 30102
-- MPU 6050
-- SSD 1306
-- APDS 9960
-- OV7670
-- ESP 32 CAM
-- ESP Wroom 32
-- HC SR 04
-- SG 90
+- **Raspberry Pi 3B**: Central processing unit.
+- **DHT22**: Measures temperature and humidity for environmental monitoring.
+- **MQ2 & MQ9**: Detects gas and air quality to ensure a safe environment.
+- **APDS9960**: Enables gesture recognition and proximity sensing.
+- **NEO M8N GPS Module**: Provides accurate location tracking for navigation.
+
 
 ## Installation and Usage
 
