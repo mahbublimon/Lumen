@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumen Control</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
+    header { padding: 16px; background: #1e293b; }
+    header .brand { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    header svg { width: 28px; height: 28px; flex: 0 0 auto; }
+    main { padding: 16px; display: grid; gap: 12px; }
+    .card { background: #111827; border-radius: 10px; padding: 16px; }
+    button { padding: 10px 14px; border-radius: 8px; border: none; background: salmon; color: white; font-weight: 600; }
+    button.secondary { background: #334155; }
+    input, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #0b1220; color: #e2e8f0; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 640px) { .row { grid-template-columns: 1fr; } header .brand h1 { font-size: 20px; } }
+    .status { font-family: ui-monospace, monospace; font-size: 14px; white-space: pre-line; background: #0b1220; padding: 10px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <!-- Simple inline SVG icon for consistent rendering -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" fill="salmon" opacity="0.25" />
+        <path d="M12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" fill="salmon" />
+      </svg>
+      <h1>Lumen Control Panel</h1>
+    </div>
+    <p style="text-align:center; margin: 4px 0 0;">Operate the assistive engine from your phone.</p>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Engine</h2>
+      <div class="row">
+        <div>
+          <label>Iterations (blank = infinite)</label>
+          <input id="iterations" type="number" placeholder="" />
+        </div>
+        <div>
+          <label>Interval seconds</label>
+          <input id="interval" type="number" step="0.1" value="1" />
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Vosk Model (optional)</label>
+          <input id="vosk" type="text" placeholder="path/to/model" />
+        </div>
+        <div>
+          <label>GPS Port (optional)</label>
+          <input id="gps" type="text" placeholder="COM3 or /dev/serial0" />
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:10px; flex-wrap: wrap;">
+        <button id="start">Start</button>
+        <button id="stop" class="secondary">Stop</button>
+        <button id="refresh" class="secondary">Refresh Status</button>
+      </div>
+      <div id="engineStatus" class="status" style="margin-top:10px;"></div>
+    </section>
+
+    <section class="card">
+      <h2>Speak</h2>
+      <input id="say" type="text" placeholder="Text to speak" value="Hello from Lumen" />
+      <div style="margin-top:10px;">
+        <button id="speak">Speak</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Read Text</h2>
+      <div style="display:flex; gap:10px; flex-wrap: wrap;">
+        <button id="capture">Capture Image</button>
+        <button id="read">OCR + Speak</button>
+      </div>
+      <div id="ocrText" class="status" style="margin-top:10px;"></div>
+    </section>
+
+    <section class="card">
+      <h2>Sensors</h2>
+      <div style="display:flex; gap:10px; flex-wrap: wrap;">
+        <button id="gpsBtn" class="secondary">GPS</button>
+        <button id="envBtn" class="secondary">Environment</button>
+        <button id="gestureBtn" class="secondary">Gesture</button>
+      </div>
+      <div id="sensorStatus" class="status" style="margin-top:10px;"></div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

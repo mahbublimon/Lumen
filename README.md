@@ -1,65 +1,86 @@
 # Lumen: Assistive Robot for Blind Students
 
-Lumen is a robotic companion designed to assist blind students by enhancing their independence through advanced features such as text-to-speech, gesture recognition, GPS navigation, and voice interaction.
+Lumen is a robotic companion designed to assist blind students by enhancing independence through text-to-speech, gesture recognition, GPS navigation, voice interaction, photo capture, and environmental monitoring.
 
 ## Features
+- Text to Speech from Book: Converts printed text into speech using OCR + TTS.
+- Gesture Recognition: Detects gestures via APDS9960 and responds with audio.
+- GPS Navigation: Provides location and simple navigation cues.
+- Voice Recognition: Responds to voice commands offline (Vosk) or via other engines.
+- Photo Capture: Captures images to describe surroundings or assist with learning.
+- Environmental Monitoring: Reads temperature/humidity (DHT22), gas sensors (MQ2 & MQ9), and IR temp (GY906/MLX90614).
 
-1. **Text to Speech from Book**: Converts printed text into speech to assist with reading.
-2. **Gesture Recognition**: Detects gestures and responds with sound-based feedback.
-3. **GPS Navigation**: Assists users in moving from one place to another.
-4. **Voice Recognition**: Responds to voice commands for interaction and control.
-5. **Photo Capture**: Captures images to describe surroundings or assist with learning.
+## Hardware Components
+- Raspberry Pi 3B: Central compute (supports I2C, SPI, UART, audio, camera).
+- DHT22: Digital temperature/humidity sensor.
+- MQ2 & MQ9: Gas and air quality sensors (require ADC like MCP3008 on Pi).
+- APDS9960: Gesture + proximity sensor via I2C.
+- NEO M8N GPS: GNSS module via UART/USB, outputs NMEA sentences.
+- GY906 (MLX90614): Infrared temperature sensor via I2C.
+- Camera: Pi Camera or USB webcam.
+- Ultrasonic (HC-SR04): Distance sensing for blind stick.
+- Vibration Motor: Haptic feedback (PWM pin on Pi).
 
-## Hardware Components Used
+## Project Structure
+```
+Lumen/
+  README.md
+  requirements.txt
+  src/
+    main.py          # CLI entrypoint
+    lumen/
+      __init__.py
+      config.py      # Global config and simulation flag
+      tts.py         # Text-to-speech
+      ocr.py         # OCR pipeline
+      voice.py       # Voice recognition
+      camera.py      # Photo capture
+      gesture.py     # APDS9960 integration
+      gps.py         # GPS via serial (NMEA)
+      env_sensors.py # DHT22, MQ2/MQ9, GY906
+      fusion.py      # Context-aware fusion engine
+      actuators.py   # Haptic buzz control
+      stick.py       # Ultrasonic distance for blind stick
+```
 
-- **Raspberry Pi 3B**: Central processing unit.
-- **DHT22**: Measures temperature and humidity for environmental monitoring.
-- **MQ2 & MQ9**: Detects gas and air quality to ensure a safe environment.
-- **APDS9960**: Enables gesture recognition and proximity sensing.
-- **NEO M8N GPS Module**: Provides accurate location tracking for navigation.
+## Assistive Fusion Algorithm (Blind Stick Ready)
+The engine prioritizes safety while supporting multimodal interaction.
+- Inputs: voice intents (Vosk), gestures (APDS9960), GPS (NMEA), environment sensors (DHT22/MQ2/MQ9/MLX90614), camera, ultrasonic distance.
+- Modes: `idle`, `navigation`, `reading`, `describe`, `status`.
+- Safety: immediate alerts for obstacles and poor air quality; haptic buzz varies with severity.
+- Navigation: basic periodic location announcements until route planning is added.
+- Reading: capture image and OCR, then speak text.
+- Describe: capture scene and speak a placeholder message.
+- Status: speak key environment readings.
 
+Run the assist loop:
+- `python src/main.py --simulate assist --iterations 30 --interval 1.0`
 
-## Installation and Usage
+## Getting Started (Simulation Mode on Windows)
+1. Ensure Python 3.10+ is installed.
+2. Optional: create a virtual environment.
+3. Install dependencies: `pip install -r requirements.txt`.
+4. Set `SIMULATION=1` or pass `--simulate` to the CLI.
+5. Try: `python src/main.py --simulate status` and `python src/main.py --simulate assist`.
 
-1. Clone the repository:
+Note: OCR requires Tesseract installed separately (https://tesseract-ocr.github.io/). In simulation, Lumen returns mock text.
 
-   ```bash
-   git clone https://github.com/mahbublimon/lumen.git
-   ```
+## Raspberry Pi Setup (Real Hardware)
+- Enable I2C, SPI, UART via `raspi-config`.
+- Install Tesseract: `sudo apt-get install tesseract-ocr`.
+- GPS: connect NEO M8N via USB or UART (`/dev/serial0`), run `python src/main.py assist --gps-port /dev/serial0`.
+- APDS9960: I2C (`SDA`, `SCL`), power 3.3V.
+- DHT22: GPIO (e.g., `GPIO4`), use `adafruit-circuitpython-dht`.
+- MQ2/MQ9: via MCP3008 ADC (SPI) — integrate readings into `env_sensors.py`.
+- MLX90614: I2C `0x5A` — reading stub provided.
+- Ultrasonic (HC-SR04): `TRIG GPIO23`, `ECHO GPIO24` — wired to `stick.py`.
+- Vibration Motor: PWM pin (e.g., `GPIO18`) — controlled by `actuators.py`.
 
-2. Install the required dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Run the main script:
-
-   ```bash
-   python lumen.py
-   ```
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to Lumen, you can follow these steps:
-
-1. Fork the repository on GitHub.
-2. Create a new branch from the `main` branch for your changes.
-3. Make your modifications and ensure they adhere to the project's coding style and guidelines.
-4. Test your changes thoroughly.
-5. Create a pull request (PR) against the `main` branch of the original repository.
-6. Provide a clear description of your changes in the PR and link to any related issues.
-
-### Coding Guidelines
-
-- Follow PEP 8 guidelines for Python code.
-- Use meaningful variable names and comments to enhance readability.
-- Write clear commit messages explaining the purpose of each commit.
-
-### Code of Conduct
-
-Please note that Lumen has a [Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
+## Roadmap
+- Route guidance with map matching and turn-by-turn prompts.
+- Scene description using on-device models.
+- Calibrated thresholds and sensor fusion filters (e.g., exponential smoothing).
+- Packaging and service scripts for autostart.
 
 ## License
-
-This project is licensed under the [MIT License](LICENSE).
+Proprietary unless specified otherwise.

@@ -1,0 +1,29 @@
+# Core
+numpy
+
+# Text-to-Speech
+pyttsx3
+
+# OCR
+opencv-python
+pytesseract
+
+# Voice Recognition (offline)
+vosk
+sounddevice
+
+# GPS
+pyserial
+
+# Sensors (Raspberry Pi)
+adafruit-circuitpython-dht
+smbus2
+# Optional: gpiozero, RPi.GPIO (install on Pi via apt/pip as needed)
+
+# Web API and UI
+fastapi
+uvicorn
+
+# Notes:
+# - Tesseract OCR binary must be installed separately.
+# - On Raspberry Pi, consider installing `python3-picamera2` via apt for Pi Camera.
