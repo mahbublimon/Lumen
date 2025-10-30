@@ -1,0 +1,11 @@
+{"ts": 1761824625.5519936, "kind": "voice", "payload": {"text": "simulation: navigate to library"}}
+{"ts": 1761824633.344248, "kind": "obstacle", "payload": {"distance_cm": 53.9}}
+{"ts": 1761824641.6852534, "kind": "voice", "payload": {"text": "simulation: navigate to library"}}
+{"ts": 1761824650.7087598, "kind": "obstacle", "payload": {"distance_cm": 25.9}}
+{"ts": 1761824651.2357397, "kind": "voice", "payload": {"text": "simulation: navigate to library"}}
+{"ts": 1761824659.099317, "kind": "obstacle", "payload": {"distance_cm": 44.8}}
+{"ts": 1761824705.849323, "kind": "voice", "payload": {"text": "simulation: navigate to library"}}
+{"ts": 1761824715.3874505, "kind": "status", "payload": {"env": {"mq2_ppm": null, "mq9_ppm": null}}}
+{"ts": 1761824715.889819, "kind": "voice", "payload": {"text": "simulation: navigate to library"}}
+{"ts": 1761824728.4110103, "kind": "voice", "payload": {"text": "simulation: navigate to library"}}
+{"ts": 1761824742.2135894, "kind": "voice", "payload": {"text": "simulation: navigate to library"}}
